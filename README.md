@@ -22,3 +22,10 @@ Implementar um laboratório de testes de intrusão para simular cenários reais 
 Execução de ataque de dicionário utilizando o módulo FTP do Medusa para obter acesso administrativo.
 ```bash
 medusa -h 192.168.56.102 -u msfadmin -P wordlist.txt -M ftp
+
+**### 2. Password Spraying e Exploração de SMB (Porta 445)**
+Neste cenário, utilizou-se a técnica de Password Spraying para testar uma única senha contra uma lista de usuários, visando evitar a detecção por sistemas de proteção.
+
+Enumeração de Usuários:
+```bash
+enum4linux -U 192.168.56.102
