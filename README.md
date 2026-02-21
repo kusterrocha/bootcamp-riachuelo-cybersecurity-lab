@@ -45,7 +45,7 @@ Neste cenário, utilizou-se a técnica de Password Spraying para testar uma úni
 
 * **Ataque Automatizado:**
    
-   medusa -h 192.168.56.102 -u admin -P wordlist.txt -M http -m FORM:"dvwa/vulnerabilities/brute/index.php?username=^USER^&password=^PASS^&Login=Login":"Username     and/or password incorrect."
+medusa -h 192.168.56.102 -u admin -P wordlist.txt -M http -m FORM:"dvwa/vulnerabilities/brute/index.php?username=^USER^&password=^PASS^&Login=Login":"Username     and/or password incorrect."
 
 ### 🛡️ Medidas de Mitigação Recomendadas
 
@@ -62,4 +62,4 @@ Neste cenário, utilizou-se a técnica de Password Spraying para testar uma úni
 📝 Conclusão
       O laboratório demonstrou que a segurança baseada apenas em perímetros de rede é insuficiente se os serviços internos possuírem configurações frágeis. O uso        de ferramentas como Medusa e Burp Suite permitiu mapear riscos que, em um ambiente real, poderiam levar ao vazamento de dados críticos. A prática reforçou a       necessidade de uma defesa em profundidade e monitoramento contínuo de logs de autenticação.
 
-                     **Desenvolvido como parte do currículo de Cibersegurança da DIO em parceria com a Riachuelo.**
+   **Desenvolvido como parte do currículo de Cibersegurança da DIO em parceria com a Riachuelo.**
