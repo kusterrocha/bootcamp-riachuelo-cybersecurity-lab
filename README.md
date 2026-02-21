@@ -43,7 +43,8 @@ Neste cenário, utilizou-se a técnica de Password Spraying para testar uma úni
 
 * **Reconhecimento:** Através do Repeater, identificou-se que a mensagem de falha é "Username and/or password incorrect.".
 
-**Ataque Automatizado:**
+* **Ataque Automatizado:**
+   
    medusa -h 192.168.56.102 -u admin -P wordlist.txt -M http -m FORM:"dvwa/vulnerabilities/brute/index.php?username=^USER^&password=^PASS^&Login=Login":"Username     and/or password incorrect."
 
 ### 🛡️ Medidas de Mitigação Recomendadas
@@ -52,7 +53,7 @@ Neste cenário, utilizou-se a técnica de Password Spraying para testar uma úni
 
 * **MFA (Multi-Factor Authentication):** Camada de segurança essencial para neutralizar ataques de credenciais, mesmo que a senha primária seja comprometida.
 
-* **Hardening de Protocolos:** * Substituir o FTP por versões cifradas como SFTP ou FTPS.
+* **Hardening de Protocolos:** Substituir o FTP por versões cifradas como SFTP ou FTPS.
 
 * **Desativar o protocolo SMBv1 e exigir SMB Signing.**
 
